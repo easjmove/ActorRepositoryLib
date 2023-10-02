@@ -8,6 +8,8 @@ namespace ActorRepositoryLib
 {
     public class Secrets
     {
-        public const string ConnectionString = "your connection string here";
+        public const string ConnectionString = 
+            "server=localhost;database=MovieDB;user id=MovieMan;" +
+            "password=MovieMan;TrustServerCertificate=True";
     }
 }

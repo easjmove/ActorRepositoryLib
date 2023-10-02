@@ -21,9 +21,37 @@ namespace ActorRepositoryLib
             };
         }
 
-        public IEnumerable<Actor> Get()
+        public IEnumerable<Actor> Get(string? nameFilter,
+            int? minBirthYear,
+            int? maxBirthYear,
+            int? amount)
         {
-            return new List<Actor>(_actors);
+            List<Actor> query = new List<Actor>(_actors);
+            
+            if (nameFilter != null)
+            {
+                query = query.FindAll(actor => 
+                actor.Name.Contains(nameFilter));
+            }
+
+            if (minBirthYear != null)
+            {
+                query = query.FindAll(actor => 
+                actor.BirthYear >= minBirthYear);
+            }
+
+            if (maxBirthYear != null)
+            {
+                query = query.FindAll(actor =>
+                actor.BirthYear <= maxBirthYear);
+            }
+
+            if (amount != null)
+            {
+                query = query.Take(amount.Value).ToList();
+            }
+            
+            return query;
         }
 
         public Actor? GetById(int id)
