@@ -36,7 +36,10 @@ namespace ActorRepositoryLib
             return actor;
         }
 
-        public IEnumerable<Actor> Get(int? amount)
+        public IEnumerable<Actor> Get(string? nameFilter,
+            int? minBirthYear,
+            int? maxBirthYear,
+            int? amount)
         {
             //List<Actor> result = _context.Actors.ToList();
             IQueryable<Actor> query = _context.Actors.AsQueryable();

@@ -31,7 +31,9 @@ namespace ActorRepositoryLib
             if (nameFilter != null)
             {
                 query = query.FindAll(actor => 
-                actor.Name.Contains(nameFilter));
+                actor.Name.Contains(nameFilter,
+                StringComparison.InvariantCultureIgnoreCase
+                ));
             }
 
             if (minBirthYear != null)
